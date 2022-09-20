@@ -3,8 +3,6 @@
 \#*
 *\#
 *.bak
-
-# Python
-.matrix
+.\#*
 
 
