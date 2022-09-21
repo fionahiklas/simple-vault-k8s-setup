@@ -94,3 +94,107 @@ NAME                     READY   AGE
 statefulset.apps/vault   0/1     77s
 ```
 
+### Vault init
+
+Running the following command 
+
+```
+VAULT_ADDR=http://localhost:8200 vault operator init
+```
+
+This gives the following output
+
+```
+Unseal Key 1: eVHcJSIjFE+fpv2BpmS8RlTSe4MOaSpd5TiziHaTGO2P
+Unseal Key 2: TnCyegblAjAvd7YGyRHpD/eLZTWJyDtacjNG9YADdIiQ
+Unseal Key 3: +cjlTSKzxQ02c2199xaRwvGhoV9a8GfBXxhYn5xijMsV
+Unseal Key 4: hXAQNHDzPk0AmqiwsjCXcMySuhYrEIrXBiuZbKEvObgU
+Unseal Key 5: NDDsTf4U/UYaw2PlDHFyDspgyxFUqf1jOD3MCdfWlRst
+
+Initial Root Token: hvs.l9wFxa9sOid2Hi06u0b2Dmxx
+
+Vault initialized with 5 key shares and a key threshold of 3. Please securely
+distribute the key shares printed above. When the Vault is re-sealed,
+restarted, or stopped, you must supply at least 3 of these keys to unseal it
+before it can start servicing requests.
+
+Vault does not store the generated root key. Without at least 3 keys to
+reconstruct the root key, Vault will remain permanently sealed!
+
+It is possible to generate new unseal keys, provided you have a quorum of
+existing unseal keys shares. See "vault operator rekey" for more information.
+```
+
+* Need to run the following command 3 times each with difference keys
+
+```
+VAULT_ADDR=http://localhost:8200 vault operator unseal
+```
+
+* Each time this runs there is a prompt to type in the keys
+* The output will look like this
+
+```
+Key                Value
+---                -----
+Seal Type          shamir
+Initialized        true
+Sealed             true
+Total Shares       5
+Threshold          3
+Unseal Progress    1/3
+Unseal Nonce       51668a51-ff35-f6db-ec9d-569dc2bb6123
+Version            1.11.3
+Build Date         2022-08-26T10:27:10Z
+Storage Type       file
+HA Enabled         false
+```
+
+* After three keys the output changes to this
+
+```
+Key             Value
+---             -----
+Seal Type       shamir
+Initialized     true
+Sealed          false
+Total Shares    5
+Threshold       3
+Version         1.11.3
+Build Date      2022-08-26T10:27:10Z
+Storage Type    file
+Cluster Name    vault-cluster-a935845e
+Cluster ID      caaf2e65-7242-0b52-48a0-4ea8c77f5d2a
+HA Enabled      false
+```
+
+### Setup 
+
+* Following the [tutorial instructions](https://learn.hashicorp.com/tutorials/vault/getting-started-deploy)
+* Login into the newly setup vault
+
+```
+VAULT_ADDR=http://localhost:8200 vault login
+```
+
+* This asks for the "Initial Root Token" that was output from init
+* The output from the command will be like this
+
+```
+Success! You are now authenticated. The token information displayed below
+is already stored in the token helper. You do NOT need to run "vault login"
+again. Future Vault requests will automatically use this token.
+
+Key                  Value
+---                  -----
+token                hvs.l9wFxa9sOid2Hi06u0b2Dmxx
+token_accessor       X9QIdvjwX6x7DkNV1cNnuPNx
+token_duration       ∞
+token_renewable      false
+token_policies       ["root"]
+identity_policies    []
+policies             ["root"]
+```
+
+* Also the file `$HOME/.vault-token` will be created with the token value
+* 
