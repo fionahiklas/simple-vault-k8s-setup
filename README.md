@@ -198,3 +198,40 @@ policies             ["root"]
 
 * Also the file `$HOME/.vault-token` will be created with the token value
 * 
+
+
+## Notes
+
+### Helm
+
+#### Show All
+
+```
+helm show all hashicorp/vault | less
+```
+
+
+### Kubernetes
+
+
+
+
+## References
+
+### Helm
+
+* [Cheat sheet](https://www.tutorialworks.com/helm-cheatsheet/)
+* [Show All](https://helm.sh/docs/helm/helm_show_all/)
+
+
+### Kubernetes
+
+* [Service Accounts](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/)
+
+### Vault
+
+* [Authentication](https://learn.hashicorp.com/tutorials/vault/getting-started-authentication?in=vault/getting-started)
+* [Vault kubernetes auth method](https://www.vaultproject.io/docs/auth/kubernetes)
+
+
+
