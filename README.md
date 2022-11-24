@@ -197,7 +197,7 @@ policies             ["root"]
 ```
 
 * Also the file `$HOME/.vault-token` will be created with the token value
-* 
+
 
 
 ## Notes
@@ -227,11 +227,26 @@ helm show all hashicorp/vault | less
 ### Kubernetes
 
 * [Service Accounts](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/)
+* Using (non-vault) [Kubernetes secrets](https://kubernetes.io/docs/tasks/configmap-secret/managing-secret-using-kubectl/)
+* Configuring [service accounts for pods](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/)
+* [Authorization overview](https://kubernetes.io/docs/reference/access-authn-authz/authorization/)
+* [RBAC docs](https://rbac.dev)
+* [RBAC for k8s](https://kubernetes.io/docs/reference/access-authn-authz/rbac/)
+
+
 
 ### Vault
 
+* [Vault on k8s deployment guide](https://learn.hashicorp.com/tutorials/vault/kubernetes-raft-deployment-guide?in=vault/kubernetes)
 * [Authentication](https://learn.hashicorp.com/tutorials/vault/getting-started-authentication?in=vault/getting-started)
 * [Vault kubernetes auth method](https://www.vaultproject.io/docs/auth/kubernetes)
+* [Injecting secrets via vault agent containers](https://learn.hashicorp.com/tutorials/vault/kubernetes-sidecar)
+* [Injecting secrets from vault, mentions sourcing the secrets file](https://discuss.hashicorp.com/t/vault-helm-and-kubernetes-environment-variables/4973/5)
+* [Kubernetes Auth Method](https://www.vaultproject.io/docs/auth/kubernetes)
+* [Vault agent with k8s](https://learn.hashicorp.com/tutorials/vault/agent-kubernetes)
+
+
+
 
 
 
